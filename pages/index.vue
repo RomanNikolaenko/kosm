@@ -149,7 +149,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~/assets/main";
 
 .seo-text {
@@ -158,10 +158,6 @@ export default {
 
   @media (max-width: 1200px) {
     margin-top: calc(30px + (161 - 30) * ((100vw - 320px) / (1200 - 320)));
-  }
-
-  &__title {
-    color: #000;
   }
 
   &__descr {

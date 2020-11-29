@@ -1,9 +1,10 @@
 <template lang="pug">
 .post
   h1 {{ posts.title }}
-  p {{ posts.body }}
+  h6 {{ posts.body }}
 
   .comments
+    h2 Comments
     .comments__block(v-for="comment of comments", :key="comment.id")
       h3 {{ comment.name }}
       h3.comments__link
@@ -20,8 +21,8 @@ export default {
     const posts = await $axios.$get(
       "https://jsonplaceholder.typicode.com/posts/" + params.id
     );
-    // const userComments = await $axios.$get('https://jsonplaceholder.typicode.com/comments/' + params.id)
-    return { posts };
+    const userComments = await $axios.$get('https://jsonplaceholder.typicode.com/comments/' + params.id)
+    return { posts, userComments };
   },
   async fetch({ store }) {
     if (store.getters["comments/comments"].length === 0) {
@@ -36,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import "~/assets/main";
 
 .post {
@@ -55,6 +56,10 @@ export default {
     &:nth-last-of-type(1) {
       margin-bottom: 20px;
     }
+  }
+
+  h6 {
+    margin-bottom: 30px;
   }
 }
 

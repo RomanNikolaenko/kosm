@@ -14,7 +14,7 @@ export default {
   computed: {
     users() {
       return this.$store.getters["users/users"];
-    },
+    }
   },
   methods: {
     openUser(user) {
@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~/assets/main";
 
 .list-user {

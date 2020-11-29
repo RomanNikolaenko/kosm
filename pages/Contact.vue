@@ -11,7 +11,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~/assets/main";
 .contacts {
   margin: 100px 0;

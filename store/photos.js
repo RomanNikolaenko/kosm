@@ -10,7 +10,7 @@ export const mutations = {
 
 export const actions = {
   async fetch({ commit }) {
-    const photos = await this.$axios.$get('https://jsonplaceholder.typicode.com/photos')
+    const photos = await this.$axios.$get('https://jsonplaceholder.typicode.com/photos?_limit=1')
     commit('setPhotos', photos)
   }
 }

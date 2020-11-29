@@ -1,7 +1,8 @@
 <template lang="pug">
 ul.list-posts
   li.list-posts__item(v-for="post of posts", :key="post.id")
-    img.list-posts__img(src="~assets/img/carousel-2.jpg", alt="post")
+    .list-posts__img(v-for="photo of photos", :key="post.id")
+      img(:src="photo.url", alt="photo")
     .list-posts__wrap
       a.list-posts__link(href="#", @click.prevent="openPost(post)") {{ post.title }}
       p.list-posts__descr {{ post.body }}
@@ -10,13 +11,17 @@ ul.list-posts
 <script>
 export default {
   async fetch({ store }) {
-    if (store.getters["posts/posts"].length === 0) {
+    if (store.getters["posts/posts"].length === 0 && store.getters["photos/photos"].length === 0) {
       await store.dispatch("posts/fetch");
+      await store.dispatch("photos/fetch");
     }
   },
   computed: {
     posts() {
       return this.$store.getters["posts/posts"];
+    },
+    photos() {
+      return this.$store.getters["photos/photos"];
     },
   },
   methods: {
@@ -28,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~/assets/main";
 
 .list-posts {
@@ -56,10 +61,13 @@ export default {
 
   &__img {
     width: 200px;
-    object-fit: contain;
     align-self: flex-start;
     flex: 0 0 auto;
     margin-right: 15px;
+
+    img {
+      object-fit: contain;
+    }
 
     @media (max-width: 576px) {
       width: 100%;

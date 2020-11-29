@@ -13,7 +13,7 @@ footer.footer
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~/assets/main";
 .footer {
   padding: 33px 0;
